@@ -46,3 +46,11 @@ class Button(pygame.sprite.Sprite):
         else:
             self.image.fill((218, 112, 214))
             self.blit_text()
+
+    def updatel(self, mouse_x, mouse_y):
+        if self.be_inside(mouse_x, mouse_y):
+            self.image.fill((255, 165, 0))
+            self.blit_text()
+        else:
+            self.image.fill((248, 213, 104))
+            self.blit_text()
