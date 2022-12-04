@@ -86,7 +86,7 @@ class Game:
         if not self.on_ground:
             self.speed += 1
 
-    def game(self, power=15):
+    def game(self, r = 130):
         '''
         это основная функция иии
         :param power: сила прыжка ...
@@ -95,12 +95,12 @@ class Game:
         game_run = True
         # Переменная power отвечает за силу прыжка
         next_level = 10
-
+        power = 15
         self.player = sprites.Sprite(400, 500, 50, 50, 'amoeba.png')
         score = 0
 
         platforms = pygame.sprite.Group(
-            [sprites.Sprite(random.randint(100, 600), (i * 100) + 50, 130, 40, 'plat.png') for i in range(10)]
+            [sprites.Sprite(random.randint(100, 600), (i * 100) + 50, r, 40, 'plat.png') for i in range(10)]
         )
         upper_platform = platforms.sprites()[0]
 
@@ -129,7 +129,7 @@ class Game:
 
            # Увеличение количества платформ, задание размера платформы (длина,ширина)
             if upper_platform.rect.y > power * 10:
-                upper_platform = sprites.Sprite(random.randint(217, 550), 0, 130, 40, 'plat.png')
+                upper_platform = sprites.Sprite(random.randint(217, 550), 0, r, 40, 'plat.png')
                 platforms.add(upper_platform)
 
             for platform in platforms.sprites():
