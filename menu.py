@@ -4,6 +4,7 @@ import sprites
 
 
 def menu(game):
+    '''  Отрисовка и обрабокта данных главного меню '''
     play_button = sprites.Button(400, 550, 'Play', game.middle_font)
     level_button = sprites.Button(400, 690, 'level', game.middle_font)
     info_button = sprites.Button(400, 620, 'Info', game.middle_font)
@@ -18,11 +19,11 @@ def menu(game):
                 return False
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if play_button.be_inside(pos[0], pos[1]):
-                    return 15
+                    return 140
                 if info_button.be_inside(pos[0], pos[1]):                    
-                    return 100
+                    return 1
                 if level_button.be_inside(pos[0], pos[1]):
-                    return 300
+                    return 2
 
         play_button.update(pos[0], pos[1])
         info_button.update(pos[0], pos[1])
