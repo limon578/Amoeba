@@ -3,6 +3,17 @@ import random
 import sprites
 
 
+INFO_TEXT = '''
+      The game starts when you press the "play" key.
+
+ 1.) The task is to score the maximum number of
+       points by jumping on the platforms.
+ 2.) To direct the character to the right and left, you
+       must press the "→" and "←" keys, respectively.
+ 3.) The game ends when the player has fallen off
+       the platform.
+               Good luck amoeba!'''
+
 class Game:
 
     def __init__(self, screen):
@@ -21,25 +32,15 @@ class Game:
         self.speed = 0
         self.player = None
 
-    # Отрисовка текста для Info
-    def draw_author(self):
-        text_surface0, rect = self.small_font.render(f' The game starts when you press the "play" key.', (0, 0, 0))
-        text_surface1, rect = self.small_font.render(f' 1.) The task is to score the maximum number of', (0, 0, 0))
-        text_surface2, rect = self.small_font.render(f' points by jumping on the platforms.', (0, 0, 0))
-        text_surface3, rect = self.small_font.render(f' 2.) To direct the character to the right and left,', (0, 0, 0))
-        text_surface4, rect = self.small_font.render(f' you must press the "→" and "←" keys, respectively.', (0, 0, 0))
-        text_surface5, rect = self.small_font.render(f' 3.) The game ends when the player has fallen off', (0, 0, 0))
-        text_surface6, rect = self.small_font.render(f' the platform.', (0, 0, 0))
-        text_surface7, rect = self.small_font.render(f' Good luck amoeba!', (0, 0, 0))
-        self.screen.blit(text_surface0, (185, 165))
-        self.screen.blit(text_surface1, (170, 250))
-        self.screen.blit(text_surface2, (170, 275))
-        self.screen.blit(text_surface3, (170, 310))
-        self.screen.blit(text_surface4, (170, 335))
-        self.screen.blit(text_surface5, (170, 370))
-        self.screen.blit(text_surface6, (170, 395))
-        self.screen.blit(text_surface7, (310, 450))
+    
        
+    def draw_author(self):
+        text_surface = list(map( lambda x: self.small_font.render(x, 'black'), INFO_TEXT.split('\n')))
+
+        step = 40
+        start = 100
+        for i, y in enumerate(range(start, start + step * len(text_surface), step)):
+            self.screen.blit(text_surface[i][0], (170, y))
         
     # Главное меню 
     def draw_menu_header(self):
