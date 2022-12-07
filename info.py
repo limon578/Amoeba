@@ -15,10 +15,10 @@ def info(game):
             if event.type == pygame.QUIT:
                 return False
             if event.type == pygame.KEYDOWN:
-                return 200
+                return 3
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if main_button.be_inside(pos[0], pos[1]):
-                    return 200
+                    return 3
 
         main_button.update(pos[0], pos[1])
 
@@ -31,3 +31,4 @@ def info(game):
         pygame.display.flip()
 
         game.clock.tick(20)
+
