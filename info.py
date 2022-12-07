@@ -4,6 +4,7 @@ import sprites
 
 
 def info(game):
+    ''' Отрисовка иформации о правилах игры, обработка данных '''
     main_button = sprites.Button(400, 540, 'Main menu', game.middle_font)
 
     menu_run = True
@@ -24,6 +25,7 @@ def info(game):
 
         game.screen.fill((127, 255, 212))
         game.draw_overlay()
+        # draw_author - текст для Info
         game.draw_author()
 
         game.screen.blit(main_button.image, main_button.rect)
@@ -31,4 +33,3 @@ def info(game):
         pygame.display.flip()
 
         game.clock.tick(20)
-
