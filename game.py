@@ -21,7 +21,7 @@ class Game:
         self.speed = 0
         self.player = None
 
-
+    # Отрисовка текста для Info
     def draw_author(self):
         text_surface0, rect = self.small_font.render(f' The game starts when you press the "play" key.', (0, 0, 0))
         text_surface1, rect = self.small_font.render(f' 1.) The task is to score the maximum number of', (0, 0, 0))
@@ -41,7 +41,7 @@ class Game:
         self.screen.blit(text_surface7, (310, 450))
        
         
-
+    # Главное меню 
     def draw_menu_header(self):
 
         # Вывод на экран меню названия игры
@@ -64,7 +64,7 @@ class Game:
         pygame.draw.rect(self.screen, (123, 104, 238), (650, 0, 150, 800), 0)
         pygame.draw.rect(self.screen, (139, 0, 139), (0, 0, 150, 800), 10)
         pygame.draw.rect(self.screen, (139, 0, 139), (650, 0, 150, 800), 10)
-
+    # Отрисовка очков, набранныхв игре
     def draw_result(self, score):
         text_surface, rect = self.small_font.render(f'Score: {score}', (0, 0, 0))
         self.screen.blit(text_surface, (20, 50))
@@ -78,6 +78,7 @@ class Game:
                     self.player.rect.left <= platform.rect.right and
                     platform.rect.bottom >= self.player.rect.bottom >= platform.rect.top
             ):
+                
                 if self.speed >= 0:
                     self.speed = 0
                     self.on_ground = True
@@ -87,13 +88,13 @@ class Game:
             self.speed += 1
 
     def game(self, r = 140):
-        '''это основная функция иии
-        :param power: сила прыжка ...
-        :
+        '''
+        Основная функция игры, взаимодействие платформы и Амёбы, сдвиг платформ,
+        r = 140 - ширина платформы, зависит от уровней сложности
         '''
         game_run = True
         # Переменная power отвечает за силу прыжка
-
+        
         power = 15
         self.player = sprites.Sprite(400, 500, 50, 50, 'amoeba.png')
         score = 0
@@ -108,7 +109,7 @@ class Game:
         fail = False
 
         while game_run:
-           # Перемещение персонажа вправо и влево 
+           # Перемещение персонажа вправо и влево
             keys = pygame.key.get_pressed()
             if keys[pygame.K_RIGHT]:
                 self.player.rect.x += 13
@@ -126,7 +127,7 @@ class Game:
 
             self.player.rect.y += self.speed
 
-           # Увеличение количества платформ, задание размера платформы (длина, r = ширина)
+           # Увеличение количества платформ, задание размера платформы (длина,ширина)
             if upper_platform.rect.y > power * 10:
                 upper_platform = sprites.Sprite(random.randint(217, 550), 0, r, 40, 'plat.png')
                 platforms.add(upper_platform)
@@ -135,8 +136,8 @@ class Game:
                 # Если значение скорости меньше 0 и если игрок вблизи 300 по у, то платформы должны двигаться вниз
                 if self.speed < 0:
                     if self.player.rect.y < 300:
-                        platform.rect.y -= self.speed 
-                    platform.rect.y -= self.speed * 0.5
+                        platform.rect.y -= self.speed * 0.5
+                    platform.rect.y -= self.speed
                 if platform.rect.y >= 800:
                     platform.kill()
                     # Добавление очков в сслучае уничтожения платформы, когда она выходит за границу экрана
@@ -156,9 +157,7 @@ class Game:
                     self.high_score = score
                 game_run = False
                 fail = True
-
             
-
             pygame.display.flip()
             self.clock.tick(60)
 
