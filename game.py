@@ -86,15 +86,14 @@ class Game:
         if not self.on_ground:
             self.speed += 1
 
-    def game(self, r = 130):
-        '''
-        это основная функция иии
+    def game(self, r = 140):
+        '''это основная функция иии
         :param power: сила прыжка ...
-        :return:
+        :
         '''
         game_run = True
         # Переменная power отвечает за силу прыжка
-        next_level = 10
+
         power = 15
         self.player = sprites.Sprite(400, 500, 50, 50, 'amoeba.png')
         score = 0
@@ -109,13 +108,13 @@ class Game:
         fail = False
 
         while game_run:
-           # Перемещение персонажа вправо и влево
+           # Перемещение персонажа вправо и влево 
             keys = pygame.key.get_pressed()
             if keys[pygame.K_RIGHT]:
-                self.player.rect.x += 10
+                self.player.rect.x += 13
 
             if keys[pygame.K_LEFT]:
-                self.player.rect.x -= 10
+                self.player.rect.x -= 13
 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -127,7 +126,7 @@ class Game:
 
             self.player.rect.y += self.speed
 
-           # Увеличение количества платформ, задание размера платформы (длина,ширина)
+           # Увеличение количества платформ, задание размера платформы (длина, r = ширина)
             if upper_platform.rect.y > power * 10:
                 upper_platform = sprites.Sprite(random.randint(217, 550), 0, r, 40, 'plat.png')
                 platforms.add(upper_platform)
@@ -136,8 +135,8 @@ class Game:
                 # Если значение скорости меньше 0 и если игрок вблизи 300 по у, то платформы должны двигаться вниз
                 if self.speed < 0:
                     if self.player.rect.y < 300:
-                        platform.rect.y -= self.speed * 0.5
-                    platform.rect.y -= self.speed
+                        platform.rect.y -= self.speed 
+                    platform.rect.y -= self.speed * 0.5
                 if platform.rect.y >= 800:
                     platform.kill()
                     # Добавление очков в сслучае уничтожения платформы, когда она выходит за границу экрана
@@ -158,9 +157,7 @@ class Game:
                 game_run = False
                 fail = True
 
-            if score > next_level:
-                next_level += 15
-                power += 0.5
+            
 
             pygame.display.flip()
             self.clock.tick(60)
