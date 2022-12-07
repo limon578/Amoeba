@@ -12,19 +12,19 @@ if __name__ == "__main__":
     t = menu(g)
     
     while t is not False:
-        if t == 100:
+        if t == 3:
+            t = menu(g)
+
+        if t == 1:
             t = info(g)
 
-        if t == 300:
+        if t == 2:
             t = level(g)
-
-        if t == 350:
-            t = menu(g)
 
         if t == 30:
             t = g.game(30)
             t = t and menu(g)
-
+       
         if t == 80:
             t = g.game(80)
             t = t and menu(g)
@@ -32,12 +32,8 @@ if __name__ == "__main__":
         if t == 150:
             t = g.game(150)
             t = t and menu(g)
-        
 
-        if t == 200:
-            t = menu(g)
-
-        if t < 100:
+        if t == 140:
             t = g.game(140)
             t = t and menu(g)
 
