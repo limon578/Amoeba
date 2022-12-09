@@ -4,7 +4,7 @@ import sprites
 
 
 def level(game):
-    ''' Отрисовка меню уровней и обработка данных уровней сложности '''
+    ''' Отрисовка меню уровней и обработка данных о уровнях сложности '''
     main_button = sprites.Button(400, 640, 'Main menu', game.middle_font)
     hard_button = sprites.Button(400, 480, 'Hard', game.middle_font)
     medium_button = sprites.Button(400, 400, 'Medium', game.middle_font)
@@ -20,18 +20,23 @@ def level(game):
                 return False
             if event.type == pygame.KEYDOWN:
                 return 3
+                # Возвращение в меню главного окна
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if main_button.be_inside(pos[0], pos[1]):
                     return 3
+                    # Возвращение в меню главного окна
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if hard_button.be_inside(pos[0], pos[1]):
                     return 30
+                    # Передача данных о размере платформы - ширины
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if medium_button.be_inside(pos[0], pos[1]):
                     return 80
+                    # Передача данных о размере платформы - ширины
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if easy_button.be_inside(pos[0], pos[1]):
                     return 150
+                    # Передача данных о размере платформы - ширины
 
         main_button.update(pos[0], pos[1])
         hard_button.updatel(pos[0], pos[1])
@@ -40,7 +45,6 @@ def level(game):
 
         game.screen.fill((127, 255, 212))
         game.draw_overlay()
-    
 
         game.screen.blit(main_button.image, main_button.rect)
         game.screen.blit(hard_button.image, hard_button.rect)

@@ -15,8 +15,9 @@ INFO_TEXT = '''
                Good luck amoeba!'''
 
 class Game:
-
+    ''' Отвечает за механику игры и отрисовка меню '''
     def __init__(self, screen):
+        ''' Инициализация базовых параметров игры '''
         self.clock = pygame.time.Clock()
         self.screen = screen
         pygame.display.set_caption('Amoeba Jump')
@@ -35,6 +36,7 @@ class Game:
     
        
     def draw_author(self):
+        ''' Вывод текста на экран по строкам '''
         text_surface = list(map( lambda x: self.small_font.render(x, 'black'), INFO_TEXT.split('\n')))
 
         step = 40
@@ -42,8 +44,9 @@ class Game:
         for i, y in enumerate(range(start, start + step * len(text_surface), step)):
             self.screen.blit(text_surface[i][0], (170, y))
         
-    # Главное меню 
+    
     def draw_menu_header(self):
+        ''' Отрисовка одной из составляющей Главного меню '''
 
         # Вывод на экран меню названия игры
         text_surface, rect = self.big_font.render('Amoeba Jump', (0, 0, 0))
@@ -59,19 +62,20 @@ class Game:
             ),
         )
 
-   # Отрисовка окаймлающих прямоугольников в меню
     def draw_overlay(self):
+        ''' Отрисовка окаймлающих прямоугольников в меню '''
         pygame.draw.rect(self.screen, (123, 104, 238), (0, 0, 150, 800), 0)
         pygame.draw.rect(self.screen, (123, 104, 238), (650, 0, 150, 800), 0)
         pygame.draw.rect(self.screen, (139, 0, 139), (0, 0, 150, 800), 10)
         pygame.draw.rect(self.screen, (139, 0, 139), (650, 0, 150, 800), 10)
     # Отрисовка очков, набранныхв игре
     def draw_result(self, score):
+        ''' Вывод количества заработанных очков'''
         text_surface, rect = self.small_font.render(f'Score: {score}', (0, 0, 0))
         self.screen.blit(text_surface, (20, 50))
 
     def boundaries(self, platforms):
-    # Обработка касаний между платформой и игроком
+        ''' Обработка касаний между платформой и игроком '''
         for platform in platforms.sprites():
             # Условия касания с правой и левой границей, проверка нахождения игрока выше верхней поверхности платформы
             if (

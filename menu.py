@@ -20,10 +20,13 @@ def menu(game):
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if play_button.be_inside(pos[0], pos[1]):
                     return 140
+                    # Передача данных о размере платформы - ширины
                 if info_button.be_inside(pos[0], pos[1]):                    
                     return 1
+                    # Открытие окна Info
                 if level_button.be_inside(pos[0], pos[1]):
                     return 2
+                    # Открытие окна Level
 
         play_button.update(pos[0], pos[1])
         info_button.update(pos[0], pos[1])

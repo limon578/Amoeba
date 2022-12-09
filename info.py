@@ -25,6 +25,7 @@ def info(game):
 
         game.screen.fill((127, 255, 212))
         game.draw_overlay()
+        
         # draw_author - текст для Info
         game.draw_author()
 
